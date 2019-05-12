@@ -1,0 +1,532 @@
+body,html {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+/*************** setting up the divs************************/
+
+/*************** this is the div that holds the ***********8
+****************entire html for the ranking page************/
+
+#ranking{
+display:none;
+ 
+}
+
+/*************** this is the div that holds the ***********
+****************entire html for the map page***88*********/
+#mapp{
+display:block;
+ 
+}
+
+/*************** this is the div that holds the ********
+**************entire html for the ranking results******/
+
+#results{
+  position: absolute;
+  height: auto;
+  margin-top: 100px;
+  margin-bottom: 40px;
+  left: 30vw;
+  display: none;
+  padding: 20px;
+  box-shadow: 18px 10px gray;
+  border-radius: 4px;
+    background-color: lightgray;
+  
+  
+  
+}
+
+
+/******************************************************
+**************this is the map positioning *************/
+#map {
+cursor: grab;
+height: calc(100vh - 60px);
+top: 60px;
+}
+
+/*************************************************************************************************/
+/***************** THIS IS HEADER NAVIGATION *****************************************************/
+/*************************************************************************************************/
+
+.head {
+  height: 60px;
+  margin:0;
+  width: 100vw;
+  z-index: 960;
+  position: absolute;
+  padding: 10px;
+  background:#fff;
+ 
+  overflow:hidden;
+  background-color:#807F7D
+  }
+
+.hea{
+  float:right;
+  overflow:hidden;
+  margin-right:1%;
+  
+}
+.hea1{
+  float:left;
+  margin-left:2%;
+  margin-top: 4px;
+  font-size: 30px;
+  overflow:hidden;
+  font-weight: bold;
+  color: #000;
+}
+
+
+.headerBtn {
+  width: auto;
+  padding:10px;
+  cursor: pointer;
+  margin-left:7px;
+  border:#e8491d 2px solid;
+  background-color: rgba(0,0,0,0); 
+  border-radius: 4px;
+}
+
+    .headerBtn:hover {
+      color: black;
+      background-color: lightgray;
+}
+
+.navBtn {
+  width: 100%;
+  padding:10px;
+  cursor: pointer;
+  margin-top:1em;
+  background-color: rgba(0,0,0,0); 
+  font-size:14px;
+  font-weight:bold;
+  border:white 2px solid;
+  border-radius: 4px;
+}
+
+    .navBtn:hover {
+      color: black;
+      background-color: #FFFFFF;
+}
+
+img {
+  width: 100%;
+}
+
+/***************** THIS Is The map wrapper  and all the CSS****************************************/
+
+
+/***** Inside the collapsible side bar  box/ infos********/
+
+.box {   
+    height: auto;
+    
+    position: relative;
+    max-height: calc(100vh - 220px);
+    background-color: rgba(204,204,204,1);
+    z-index: 2;
+    padding: 16px;
+    margin-top: 36px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 0px 8px rgba(0, 0, 0, 0.24)
+}
+
+.box header h1 {
+    color: inherit;
+}
+
+.box::-webkit-scrollbar {
+  width: 0.5em;
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+ 
+.box::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0);
+}
+ 
+.box::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  border: 1px solid darkgrey;
+  border-radius: 4px;
+}
+.openbox {
+  top: 60px;
+  height: 40px;
+  width: 40px;
+  right: 12px;
+  border-radius: 4px;
+  z-index: 900;
+  color: #262626;
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; 
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0px 8px rgba(0, 0, 0, 0.24);
+  margin-left: calc(100% - 36px);
+  position: fixed;
+  margin: 10px 10px 0;
+  padding-left: 4px;
+
+}
+
+.openbox:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: black;
+}
+
+
+.infoBox {
+  height: 100%; 
+  margin-top: 1em; 
+  border-radius: 4px; 
+}
+
+.schoolBox {
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  padding: 10px;
+  margin-top: -1em;
+}
+
+
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+  
+}
+
+h3 {
+  font-size: 1.2em;
+  font-weight: normal;
+  line-height: 0.5;
+}
+
+sup {
+  font-size: 0.75em;
+  line-height: 0;
+}
+
+hr {
+  border-top: 1.5px solid #e8491d ;
+}
+
+
+/*******this is the navigation bar **************************************/
+
+.sidenav {
+  height: auto; 
+  width: 0; 
+  position: fixed; 
+  z-index: 100; 
+  top: 0; 
+  opacity: 0.9;
+  background-color: rgba(255, 255, 255, 0); 
+  overflow-x: hidden;
+  padding-top: 90px; 
+  transition: 0.1s; 
+  right: 12px;
+}
+
+ 
+/******** Position and style the close button ******/
+
+#closebtn {
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  color: #262626;
+  font-size: 36px;
+  margin-left: 50px;
+  text-decoration: none;
+  top: 70px;
+  text-align: center;
+  height: 40px;
+  width: 40px;
+  z-index: 900;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0px 8px rgba(0, 0, 0, 0.24);
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; 
+  
+}
+
+#closebtn:hover {
+      color: black;
+}
+
+/********************** open side menu*********************/
+.open  {
+  right: 10px;
+  cursor: pointer;
+  margin-left: 2px;
+  font-size: 32px;
+  line-height: 1.3;
+}
+
+
+
+/******* end of side navigation bar ************************/
+
+
+/************ this is the left side dropdown****************/
+#js-select-drop2 {
+  position:relative;
+  width: auto;
+  opacity: 0.8;
+  top: 10px;
+  left: 50px;
+  height: auto;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0 0px 16px rgba(0, 0, 0, 0.24);
+  font-weight: inherit;
+  font-family: inherit;
+  z-index:950;
+}
+
+
+/************ this is the ranking slider***************/
+
+
+.pslider{
+  position: absolute;
+  top: calc(100vh - 60px);
+  height:60px;
+  width: 100vw;
+  padding-top: 20px;
+  padding-bottom:15px;
+  z-index: 950;
+ 
+}
+.noUi-tooltip {
+  background: lightgray;
+  color: black;
+}
+
+.noUi-connect {
+    background: black;
+}
+
+.noUi-handle {
+  background-color: black;
+  color: gray;
+}
+
+#price-slider {
+  -webkit-appearance: none;
+  width: calc(100vw - 60px);
+  max-width: 600px;
+  left: calc(50vw - 380px);
+  height: 15px;
+  background: darkgrey;
+  margin-left:5%;
+  opacity: 0.7;
+ 
+}
+
+/***** these are the text and screen to the map********/
+
+.enter-screen {
+  padding-top: 25vh;
+  position: absolute;
+  height: calc(100vh - 20px);
+  width: 100vw;
+  background-color: rgba(0,0,0,0);
+  z-index: 100000;
+  cursor: pointer;
+  color: #000;
+  font-size: 3em;
+  text-align: center;
+  text-shadow: 0 0px 10px rgba(255,255,255,0.8);  
+  text-transform: uppercase;
+  transition: 2.5s;
+   
+}
+
+
+.enter-text {
+  position: absolute;
+  font-size: 5em;
+  width: 100vw;
+  text-align: center;
+  z-index: 1000;
+  margin-top: 65vh;
+  text-shadow: 0 0px 18px rgba(0,0,0,0.6);  
+  text-transform: uppercase;
+  transition: 2.5s;
+ 
+}
+
+
+/*************************************************************************************************/
+/***************** THIS Is The end of map rapper  and all the CSS*********************************/
+/*************************************************************************************************/
+
+
+/**************************************************************************************************/
+/****************************** ranking page CSS **************************************************/
+/**************************************************************************************************/
+
+/*********THIS HOLDS ALL THE QUESTIONS****************/
+#Quetions{
+margin: 40px 0px 0px 0px;
+display:flex; 
+padding:0;
+overflow:hidden;
+width:100%;
+height: calc(100vh - 62px);
+position:absolute;
+}
+
+/**THIS HOLDS ALL THE QUESTIONS inside the quetions div**/
+Ul{
+  margin: 10px;
+  padding: 10px;
+  position: relative;
+  border: 2px solid rgba(0,0,0,0.6);
+  height: 85vh;
+  width: 20rem;
+  background-color: rgba(0,0,0,0.2);
+  overflow-y:auto;
+}
+
+/**************These are the buttons to access the questions div************/
+  
+.btn{ 
+    margin: 0 0 5% 0;
+    background-color: white;
+    border: 1px solid;
+    padding: 5%;
+    text-align: left;
+    /* text-decoration: none; */
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    /* position: relative; */
+    width: 100%;
+    border-radius: 4px;
+    -webkit-transition-duration: 0.4s;
+    /* transition-duration: 0.4s; */
+    /* overflow: hidden; */
+}
+
+.btn:hover {
+  background-color: rgba(0,0,25,0.4); 
+  color: black;
+}
+
+/***********These are the divs where the users put their inputs*************/
+
+#Quetions .Quetion{
+  margin:100px;
+  float:right;
+/*   position:relative; */
+  width:80%;
+  padding:0%;
+  overflow: hidden;
+  display:none;
+  
+/*   border: 2px solid rgba(0,0,0,0.1); */
+}
+
+/***********These are the inputs inside the quetions' divs where the users put their inputs*************/
+input.inp {
+  background-color: white;
+  border: 1px solid;
+  width:70px;
+  height:35Px;
+  border-radius: 4px;
+  text-align:right;
+  padding:0;
+  margin: 5px;
+  
+}
+input.inp:hover {
+  cursor: text;
+}
+
+/**** this is the scores discription ********/
+.h5{
+  padding:0;
+  width:100%; 
+  margin-top:2%;
+ }
+
+/**** the is for ********/
+h4 {
+ padding:0;
+ margin:0;
+ }
+
+/**** the is the h4 for "scre the attributes" ********/
+.sc{
+  font-size:20px;
+}
+
+/***********These are the Buttons inside the quetions' divs where the users move to the next quetions*************/
+.next {
+  position:absolute;bottom:5%;right:5%;width:170px; 
+  background-color: lightgray;
+  border: 1px solid;
+  color: black;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; 
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 4px;
+  
+}
+
+.next:hover {
+    background-color: rgba(0,0,25,0.4);
+    color: black;
+}
+
+/***********These are the notes inside the quetions' divs that explains the ranking*************/
+.note {
+  font-size:14px;
+  background-color:#F0EFB1;
+  position:absolute;
+  font-weight:bold;
+  border-radius: 4px;
+  margin: 15px 0 0 600px;
+  height: 160px;
+  width: 160px;
+  padding: 20px;
+}
+
+/**********score inputs and the notes containes**************************/
+.container{
+  position:absolute;
+ }
+
+/*****************************************************/
+/*************** ranking page end css*****************/
+/*****************************************************/
+
+

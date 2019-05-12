@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mukuru  |  Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    
+        <!-- Include Leaflet -->
+        <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+        <link href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/11.1.0/nouislider.min.css" rel="stylesheet">
+
+        <!-- Include CARTO.js -->
+        <script src="https://libs.cartocdn.com/carto.js/v4.1.11/carto.min.js"></script>
+
+        <link href="https://carto.com/developers/carto-js/examples/maps/public/style.css" rel="stylesheet">
+        <link href="./styles.css" rel="stylesheet">
+
+        <script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
+    
+        <!-- Load leaflet.snogylop -->
+        <script src="https://cdn.jsdelivr.net/gh/ebrelsford/Leaflet.snogylop@v0.4.0/src/leaflet.snogylop.js"></script>
+      
+  </head>
+  <body>
+    
+   <!--***********************************************************************************************
+       ************************** from line 31 to 46 is the Html for the header div ******************
+       ***********************************************************************************************-->
+   
+          <div class="head"> 
+            
+                    <div class ="hea1"> Mukuru, Nairobi Kenya </div> 
+                    <div class="hea">
+                       <button class="headerBtn" onclick="document.getElementById('mapp').style.display='block'; 
+                                                           document.getElementById('results').style.display='none'
+                                                           document.getElementById('ranking').style.display='none'">Map</button>
+                      
+                        <button class="headerBtn" onclick="document.getElementById('ranking').style.display='block'; 
+                                                           document.getElementById('results').style.display='none'
+                                                           document.getElementById('mapp').style.display='none'
+                                                           document.getElementById('quetion1').style.display='block' ; document.getElementById('quetion2').style.display='none'; document.getElementById('quetion3').style.display='none'; document.getElementById('quetion4').style.display='none'; document.getElementById('quetion5').style.display='none'; document.getElementById('quetion6').style.display='none'; document.getElementById('quetion7').style.display='none';  document.getElementById('quetion8').style.display='none'; document.getElementById('quetion9').style.display='none'; document.getElementById('quetion10').style.display='none'; document.getElementById('quetion11').style.display='none'">Set Ranking</button>
+                      
+                        <button class="headerBtn" onclick="document.getElementById('results').style.display='block'; 
+                                                           document.getElementById('ranking').style.display='none'
+                                                           document.getElementById('mapp').style.display='none'" >Ranking Results</button>
+                      
+                      <a href="https://docs.google.com/spreadsheets/d/1UVKbQnlRkn6AlG70L7Edhg97teYYOLpsD4XlSvg74nI/edit?usp=sharing" target="_blank" ><button class="headerBtn">Comment</button></a>
+                      <a href="https://docs.google.com/spreadsheets/d/1DxlRNuLlZPl8ybW9YSWpZ2Tn-nAbpNG_-k0zRC09eW8/edit?usp=sharing" target="_blank" ><button class="headerBtn">Add ranking</button></a>
+                       
+                      
+                    </div>
+                  </div> <br>
+  
+     <!--**********************************************************************************************
+      ************************** from line 52 to 91 is the Html for the map Div *********************
+        ***********************************************************************************************-->
+    
+      <div id= "mapp"> 
+                  <!--  ************ Slider ******************* -->
+                  <div class="nstSlider" data-range_min="-10" data-range_max="100" 
+                                     data-cur_min="20"    data-cur_max="80">
+                        <div class= "pslider">
+                          <div id="price-slider"></div>
+                        </div>    
+                  </div>
+          
+                  <!--  ************ Sidebar ******************* -->
+                 <div id="mySidenav" class="sidenav">
+                       <a href="#" id="closebtn" onclick="closeNav();">&times;</a>
+                   
+                   
+                       <div class="box" style="overflow: auto;">
+                           <div class="sidebar-feature-content"></div>
+                         <a href="https://drive.google.com/file/d/1x7eZF5b3kXJqyohpqgpQbCYkuQjC-06T/view?usp=sharing" target="_blank"> <button class="navBtn">Data Analysis</button></a>
+                        
+                      <div id="wrapper-select-drop"> </div>
+                      
+                      <section class="infoBox">
+                        
+                      </section>
+                      <footer class="js-footer"></footer>
+                    </div>
+                  </div>
+
+                    <!-- ******** open the sidenav ***********-->
+                 <div id="openBoundingBox" class="openbox">
+                   <span id="openbtn" class="open" href="#" onclick="openNav();">&#9776;</span>
+                 </div>
+          
+                  <!-- ******** this the map div ***********-->
+                 <div id="map">
+                    <select id="js-select-drop2">
+                       <option selected value="">Select a School</option>
+                    </select>
+                </div>
+
+                  <!-- ******* enter button********* -->
+                <div class="enter-screen"> <br> <br> <br> <br> <h6 style="color:red;font-size: 23px; margin-bottom:0px;text-shadow:none" >
+                  The New School
+                  </h6>  Mukuru</div>
+                <div class="enter-text"></div>
+
+          <!-- ******* THIS THE CLOSING DIV FOR THE THE MAP PAGE********* -->
+       </div>
+    
+        <!--****************************************************************************************************
+            ********************** from line 97 to 303 is the Html for the ranking Div *************************
+            ****************************************************************************************************-->
+
+      <div id= "ranking">
+      
+              <!-- ******* THIS ARE THE BUTTONS TO MOVE FROM ONE QUETION IN THE RANKING TO THE NEXT QUETIONS********* -->
+              <div id= "Quetions">
+                  <ul>
+                      <button class="btn" onclick="document.getElementById('quetion1').style.display='block' ; document.getElementById('quetion2').style.display='none'; document.getElementById('quetion3').style.display='none'; document.getElementById('quetion4').style.display='none'; document.getElementById('quetion5').style.display='none'; document.getElementById('quetion6').style.display='none'; document.getElementById('quetion7').style.display='none';  document.getElementById('quetion8').style.display='none'; document.getElementById('quetion9').style.display='none'; document.getElementById('quetion10').style.display='none'; document.getElementById('quetion11').style.display='none'">Number  of Students</button><br>
+                      <button class="btn" onclick="document.getElementById('quetion2').style.display='block' ; document.getElementById('quetion1').style.display='none'; document.getElementById('quetion3').style.display='none'; document.getElementById('quetion4').style.display='none'; document.getElementById('quetion5').style.display='none'; document.getElementById('quetion6').style.display='none'; document.getElementById('quetion7').style.display='none';  document.getElementById('quetion8').style.display='none'; document.getElementById('quetion9').style.display='none'; document.getElementById('quetion10').style.display='none'; document.getElementById('quetion11').style.display='none'">Number of Rooms</button><br>
+                      <button class="btn" onclick="document.getElementById('quetion3').style.display='block' ; document.getElementById('quetion2').style.display='none'; document.getElementById('quetion1').style.display='none'; document.getElementById('quetion4').style.display='none'; document.getElementById('quetion5').style.display='none'; document.getElementById('quetion6').style.display='none'; document.getElementById('quetion7').style.display='none';  document.getElementById('quetion8').style.display='none'; document.getElementById('quetion9').style.display='none'; document.getElementById('quetion10').style.display='none'; document.getElementById('quetion11').style.display='none' ">Student Teacher Ratio</button><br>
+                      <button class="btn" onclick="document.getElementById('quetion4').style.display='block' ; document.getElementById('quetion2').style.display='none'; document.getElementById('quetion3').style.display='none'; document.getElementById('quetion1').style.display='none'; document.getElementById('quetion5').style.display='none'; document.getElementById('quetion6').style.display='none'; document.getElementById('quetion7').style.display='none';  document.getElementById('quetion8').style.display='none'; document.getElementById('quetion9').style.display='none'; document.getElementById('quetion10').style.display='none'; document.getElementById('quetion11').style.display='none' "># Students per classroom</button><br>
+                      <button class="btn" onclick="document.getElementById('quetion5').style.display='block' ; document.getElementById('quetion2').style.display='none'; document.getElementById('quetion3').style.display='none'; document.getElementById('quetion4').style.display='none'; document.getElementById('quetion1').style.display='none'; document.getElementById('quetion6').style.display='none'; document.getElementById('quetion7').style.display='none';  document.getElementById('quetion8').style.display='none'; document.getElementById('quetion9').style.display='none'; document.getElementById('quetion10').style.display='none'; document.getElementById('quetion11').style.display='none' "># Desks per student</button><br>
+                      <button class="btn" onclick="document.getElementById('quetion6').style.display='block' ; document.getElementById('quetion2').style.display='none'; document.getElementById('quetion3').style.display='none'; document.getElementById('quetion4').style.display='none'; document.getElementById('quetion5').style.display='none'; document.getElementById('quetion1').style.display='none'; document.getElementById('quetion7').style.display='none';  document.getElementById('quetion8').style.display='none'; document.getElementById('quetion9').style.display='none'; document.getElementById('quetion10').style.display='none'; document.getElementById('quetion11').style.display='none' ">Percent Tuition Increase</button><br>
+                      <button class="btn" onclick="document.getElementById('quetion7').style.display='block' ; document.getElementById('quetion2').style.display='none'; document.getElementById('quetion3').style.display='none'; document.getElementById('quetion4').style.display='none'; document.getElementById('quetion5').style.display='none'; document.getElementById('quetion6').style.display='none'; document.getElementById('quetion1').style.display='none';  document.getElementById('quetion8').style.display='none'; document.getElementById('quetion9').style.display='none'; document.getElementById('quetion10').style.display='none'; document.getElementById('quetion11').style.display='none' ">Additional Schooling Fees</button><br>
+                      <button class="btn" onclick="document.getElementById('quetion8').style.display='block' ; document.getElementById('quetion2').style.display='none'; document.getElementById('quetion3').style.display='none'; document.getElementById('quetion4').style.display='none'; document.getElementById('quetion5').style.display='none'; document.getElementById('quetion6').style.display='none'; document.getElementById('quetion7').style.display='none';  document.getElementById('quetion1').style.display='none'; document.getElementById('quetion9').style.display='none'; document.getElementById('quetion10').style.display='none'; document.getElementById('quetion11').style.display='none' ">Student Travel Time</button><br>
+                      <button class="btn" onclick="document.getElementById('quetion9').style.display='block' ; document.getElementById('quetion2').style.display='none'; document.getElementById('quetion3').style.display='none'; document.getElementById('quetion4').style.display='none'; document.getElementById('quetion5').style.display='none'; document.getElementById('quetion6').style.display='none'; document.getElementById('quetion7').style.display='none';  document.getElementById('quetion8').style.display='none'; document.getElementById('quetion1').style.display='none'; document.getElementById('quetion10').style.display='none'; document.getElementById('quetion11').style.display='none' ">Feeding Program & Playground </button><br>
+                      <button class="btn" onclick="document.getElementById('quetion10').style.display='block'; document.getElementById('quetion2').style.display='none'; document.getElementById('quetion3').style.display='none'; document.getElementById('quetion4').style.display='none'; document.getElementById('quetion5').style.display='none'; document.getElementById('quetion6').style.display='none'; document.getElementById('quetion7').style.display='none';  document.getElementById('quetion8').style.display='none'; document.getElementById('quetion9').style.display='none'; document.getElementById('quetion1').style.display='none'; document.getElementById('quetion11').style.display='none'">Water & Soap Availability  </button><br>
+                      <button class="btn" onclick="document.getElementById('quetion11').style.display='block'; document.getElementById('quetion2').style.display='none'; document.getElementById('quetion3').style.display='none'; document.getElementById('quetion4').style.display='none'; document.getElementById('quetion5').style.display='none'; document.getElementById('quetion6').style.display='none'; document.getElementById('quetion7').style.display='none';  document.getElementById('quetion8').style.display='none'; document.getElementById('quetion9').style.display='none'; document.getElementById('quetion10').style.display='none'; document.getElementById('quetion1').style.display='none'">Medical & Hygiene Availability </button><br>
+                  </ul>
+
+              <!-- ******* THIS IS THE DIV FOR THE FIRST QUESTION IN THE SURVEY ********* -->
+              <div class= "Quetion" id= "quetion1">
+                  <h1>How many students are in this school?</h1>
+                  <h4 class="w">Assign a weight to this question: <input class = "inp" type="number" id="weig1" value="" /></h4> <br>
+                  <h4 class="sc">Score the attributes of this question:  </h4> <br>
+                  <div class="container">
+                    <div class="note" > Note <br><br>1 = Full Weight <br> 2 = 75% of Weight <br> 3 = 50% of   Weight <br> 4 = 25% of Weight</div>
+                      <div class="h5">
+                         <input class = "inp" type="number"  id="less100stud" value=""/> &nbsp Less than 100 students<br>
+                         <input class = "inp" type="number" id="100-199stud" value="" /> &nbsp Between 100 and 200 students<br>
+                         <input class = "inp" type="number" id="200-300stud" value="" /> &nbsp Between 200 and 300 students<br>
+                         <input class = "inp" type="number" id="more300stud" value="" /> &nbsp More than 300 students
+                      </div>   
+                  </div>  <br> <button class= "next" onclick="document.getElementById('quetion1').style.display='none'; document.getElementById('quetion2').style.display='block'" >Next Question</button>
+             </div> 
+
+             <!-- ******* THIS IS THE DIV FOR THE SECOUND QUESTION IN THE SURVEY ********* -->
+             <div class= "Quetion" id= "quetion2">
+                  <h1>How many rooms does this school have? </h1>
+                  <h4 class="w">Assign a weight to this question: <input class = "inp" type="number" id="weig2" value="" /></h4> <br>
+                  <h4 class="sc">Score the attributes of this question:  </h4> <br>
+                  <div class="container">
+                        <div class="note" > Note <br> <br>1 = Full Weight <br> 2 = 75% of Weight <br> 3 = 50% of   Weight <br> 4 = 25% of Weight</div>
+                           <div class="h5">
+                             <input class = "inp" type="number" id="less10room" value="" /> &nbsp Less than 10 rooms<br>
+                             <input class = "inp" type="number" id="10-19room" value="" /> &nbsp Between 10 and 20 rooms<br>
+                             <input class = "inp" type="number" id="20-30room" value="" /> &nbsp Between 20 and 30 rooms<br>
+                             <input class = "inp" type="number" id="more30room" value=""/> &nbsp More than 30 rooms
+                            </div> 
+                       </div>  <br> <button class= "next" onclick="document.getElementById('quetion2').style.display='none'; document.getElementById('quetion3').style.display='block'" >Next Question</button>
+             </div> 
+
+             <!-- ******* THIS IS THE DIV FOR THE THIRD QUESTION IN THE SURVEY ********* -->
+             <div class= "Quetion" id= "quetion3">
+                  <h1>What is the student to teacher ratio? </h1>
+                  <h4 class="w">Assign a weight to this question: <input class = "inp" type="number" id="weig3" value="" /> </h4> <br>
+                  <h4 class="sc">Score the attributes of this question:  </h4> <br>
+                  <div class="container">
+                       <div class="note" >Note <br> <br>1 = Full Weight <br> 2 = 75% of Weight <br> 3 = 50% of   Weight <br> 4 = 25% of Weight</div>
+                           <div class="h5">
+                              <input class = "inp" type="number" id="less10perTeacher" value="" /> &nbsp Less than 10 students per teacher<br>
+                              <input class = "inp" type="number" id="10-19perTeacher" value=""/> &nbsp Between 10 to 20 students per teacher<br>
+                              <input class = "inp" type="number" id="20-29perTeacher" value=""/> &nbsp Between 20 to 30 students per teacher<br>
+                              <input class = "inp" type="number" id="30-40perTeacher" value="" /> &nbsp More than 30 students per teacher
+                            </div> 
+                  </div>  <br> <button class= "next" onclick="document.getElementById('quetion3').style.display='none'; document.getElementById('quetion4').style.display='block'" >Next Question</button>
+             </div>  
+
+             <!-- ******* THIS IS THE DIV FOR THE FOURTH QUESTION IN THE SURVEY ********* -->
+             <div class= "Quetion" id= "quetion4">
+                <h1>What is number of students per classroom?</h1>
+                <h4 class="w">Assign a weight to this question: <input class = "inp" type="number" id="weig4" value="" /> </h4> <br>
+                  <h4 class="sc">Score the attributes of this queation:  </h4> <br>
+                  <div class="container">
+                       <div class="note" >Note <br> <br>1 = Full Weight <br> 2 = 75% of Weight <br> 3 = 50% of   Weight <br> 4 = 25% of Weight</div>
+                           <div class="h5">
+                              <input class = "inp" type="number" id="1-10students" value="" /> &nbsp Less than 10 students per classroom<br>
+                              <input class = "inp" type="number" id="11-20students" value=""/> &nbsp Between 10 to 20 student per clasroom<br>
+                              <input class = "inp" type="number" id="21-30students" value="" /> &nbsp Between 20 to 30 student per clasroom<br>
+                              <input class = "inp" type="number" id="31-40students" value="" /> &nbsp More than 30 students per classroom
+                           </div> 
+                  </div>  <br> <button class= "next" onclick="document.getElementById('quetion4').style.display='none'; document.getElementById('quetion5').style.display='block'" >Next Question</button>
+            </div>
+                
+            <!-- ******* THIS IS THE DIV FOR THE FIFTH QUESTION IN THE SURVEY ********* -->
+            <div class= "Quetion" id= "quetion5">
+                <h1>What is number of students per desk? </h1>
+                <h4 class="w">Assign a weight to this question: <input class = "inp" type="number" id="weig5" value="" /> </h4> <br>
+                  <h4 class="sc">Score the attributes of this question:  </h4> <br>
+                  <div class="container">
+                       <div class="note" >Note <br> <br>1 = Full Weight <br> 2 = 75% of Weight <br> 3 = 50% of   Weight <br> 4 = 25% of Weight</div>
+                           <div class="h5">
+                             <input class = "inp" type="number" id="1StuPerDesk" value=""/> &nbsp One student per desk<br>
+                             <input class = "inp" type="number" id="2StuPerDesk" value="" /> &nbsp Two students per desk<br>
+                             <input class = "inp" type="number" id="3StuPerDesk" value="" /> &nbsp Three students per desk<br>
+                             <input class = "inp" type="number" id="4StuPerDesk" value=""/> &nbsp Four or more students per desk
+                           </div> 
+                  </div>  <br> <button class= "next" onclick="document.getElementById('quetion5').style.display='none' ; document.getElementById('quetion6').style.display='block'" >Next Question</button>
+            </div>       
+
+            <!-- ******* THIS IS THE DIV FOR THE sixth QUESTION IN THE SURVEY ********* -->
+            <div class= "Quetion" id= "quetion6">
+                <h1>What is the percent increase in tuition between the years 2015-2018?</h1>
+                <h4 class="w">Assign a weight to this question: <input class = "inp" type="number" id="weig6" value="" /> </h4> <br>
+                  <h4 class="sc">Score the attributes of this question:  </h4> <br>
+                  <div class="container">
+                       <div class="note" >Note <br> <br>1 = Full Weight <br> 2 = 75% of Weight <br> 3 = 50% of   Weight <br> 4 = 25% of Weight</div>
+                           <div class="h5">
+                             <input class = "inp" type="number" id="0-10Percent" value="" /> &nbsp Less than 10%<br>
+                             <input class = "inp" type="number" id="11-20Percent" value="" /> &nbsp Between 10% and 20%<br>
+                             <input class = "inp" type="number" id="21-40Percent" value="" /> &nbsp Between 20% and 40% &nbsp <br>
+                             <input class = "inp" type="number" id="more40Percent" value=""/> &nbsp More than 40%
+                           </div> 
+                  </div>  <br> <button class= "next" onclick="document.getElementById('quetion6').style.display='none'; document.getElementById('quetion7').style.display='block'" >Next Question</button>
+            </div>   
+                
+            <!-- ******* THIS IS THE DIV FOR THE seventh QUETION IN THE SURVEY ********* -->
+            <div class= "Quetion" id= "quetion7">
+                <h1>What is the yearly additional fees paid by pupils on top of tuition? </h1>
+                <h4 class="w"> Assign a Weight to This Question: <input class = "inp" type="number" id="weig7" value="" /> </h4> <br>
+                  <h4 class="sc">  Score the Attributes of this question:  </h4> <br>
+                  <div class="container">
+                       <div class="note" > Note <br> <br>1 = Full Weight <br> 2 = 75% of Weight <br> 3 = 50% of   Weight <br> 4 = 25% of Weight</div>
+                           <div class="h5">
+                            <input class = "inp" type="number" id="0-100KSh" value="" /> &nbsp Less than 100 Ksh<br>
+                            <input class = "inp" type="number" id="101-500KSh" value="" /> &nbsp Between 100 & 500 Ksh<br>
+                            <input class = "inp" type="number" id="501-1000KSh" value=""/> &nbsp Between 500 & 1,000 Ksh<br>
+                            <input class = "inp" type="number" id="more1000KSh" value="" /> &nbsp More than 1,000 Ksh
+                           </div> 
+                  </div>  <br> <button class= "next" onclick="document.getElementById('quetion7').style.display='none'; document.getElementById('quetion8').style.display='block'" >Next Question</button>
+            </div>  
+                
+            <!-- ******* THIS IS THE DIV FOR THE EIGHT QUETION IN THE SURVEY ********* -->
+            <div class= "Quetion" id= "quetion8">
+                <h1>What is the average travel time of students to school? </h1>
+                <h4 class="w"> Assign a Weight to This Question: <input class = "inp" type="number" id="weig8" value="" /> </h4> <br>
+                  <h4 class="sc">  Score the Attributes of this question:  </h4> <br>
+                  <div class="container">
+                       <div class="note" > Note <br> <br>1 = Full Weight <br> 2 = 75% of Weight <br> 3 = 50% of   Weight <br> 4 = 25% of Weight</div>
+                           <div class="h5">
+                             <input class = "inp" type="number" id="less30min" value="" /> &nbsp Less than 30 minutes<br>
+                             <input class = "inp" type="number" id="30-60min" value=""/> &nbsp Between 30 to 60 minutes<br>
+                             <input class = "inp" type="number" id="61-90min" value="" /> &nbsp Between 60 to 90 minutes<br>
+                             <input class = "inp" type="number" id="more90min" value="" /> &nbsp More than 90 minutes
+                           </div> 
+                  </div>  <br> <button class= "next" onclick="document.getElementById('quetion8').style.display='none'; document.getElementById('quetion9').style.display='block'" >Next Question</button>
+            </div>  
+
+            <!-- ******* THIS IS THE DIV FOR THE NINETH QUETION IN THE SURVEY ********* -->
+            <div class= "Quetion" id= "quetion9">
+                <h1>Does the school have a feeding program and a playground? </h1>
+                <h4 class="w"> Assign a Weight to This Question: <input class = "inp" type="number" id="weig9" value="" /> </h4> <br>
+                  <h4 class="sc">  Score the Attributes of this question:  </h4> <br>
+                  <div class="container">
+                       <div class="note" >Note <br> <br>1 = Full Weight <br> 2 = 75% of Weight <br> 3 = 50% of   Weight <br> 4 = 25% of Weight</div>
+                           <div class="h5">
+                            <input class = "inp" type="number" id="AllAvailable" value="" /> &nbsp Feeding program & playground<br>
+                            <input class = "inp" type="number" id="fedOnly" value="" />&nbsp Only feeding program<br> 
+                            <input class = "inp" type="number" id="playGroOnly" value="" /> &nbsp Only playgrounds<br>
+                            <input class = "inp" type="number" id="NonAvailable" value="" /> &nbsp No feeding program or playground
+                           </div> 
+                  </div>  <br> <button class= "next" onclick="document.getElementById('quetion9').style.display='none'; document.getElementById('quetion10').style.display='block'" >Next Question</button>
+            </div>  
+
+            <!-- ******* THIS IS THE DIV FOR THE TENTH QUETION IN THE SURVEY ********* -->
+            <div class= "Quetion" id= "quetion10">
+                <h1>Does the school have water and soap for washing hands? </h1>
+                <h4 class="w"> Assign a Weight to This Question: <input class = "inp" type="number" id="weig10" value="" /> </h4> <br>
+                  <h4 class="sc">  Score the Attributes of this question:  </h4> <br>
+                  <div class="container">
+                       <div class="note" > Note <br> <br>1 = Full Weight <br> 2 = 75% of Weight <br> 3 = 50% of   Weight <br> 4 = 25% of Weight</div>
+                           <div class="h5">
+                              <input class = "inp" type="number" id="WaSoAavailable" value="" /> &nbsp Water and soap available<br>
+                              <input class = "inp" type="number" id="onlyWater" value=""/> &nbsp Only water is available<br>
+                              <input class = "inp" type="number" id="onlySoap" value="" /> &nbsp Only soap is available<br>
+                              <input class = "inp" type="number" id="nullAavailable" value="" /> Water and soap unavailable
+                           </div> 
+                  </div>  <br> <button class= "next" onclick="document.getElementById('quetion10').style.display='none'; document.getElementById('quetion11').style.display='block'" >Next Question</button>
+            </div>  
+                
+           <!-- ******* THIS IS THE DIV FOR THE eleventh QUETION IN THE SURVEY ********* -->
+           <div class= "Quetion" id= "quetion11">
+              <h1>Are feminine hygiene products and medical equipment available?</h1>
+              <h4 class="w"> Assign a Weight to This Question: <input class = "inp" type="number" id="weig11" value="" /> </h4> <br>
+                <h4 class="sc">  Score the Attributes of this question:  </h4> <br>
+                <div class="container">
+                     <div class="note" > Note <br> <br>1 = Full Weight <br> 2 = 75% of Weight <br> 3 = 50% of   Weight <br> 4 = 25% of Weight</div>
+                         <div class="h5">
+                           <input class = "inp" type="number" id="bothAvailable" value="" /> &nbsp Both hygiene products and medical equipment are available<br>
+                           <input class = "inp" type="number" id="hygiOnly" value="" /> &nbsp Only hygiene products are available<br>
+                           <input class = "inp" type="number" id="medicOnly" value=""/> &nbsp Only medical equipment is available<br>
+                           <input class = "inp" type="number" id="noneAvailable" value="" /> &nbsp Both hygiene products and medical equiptment are unavailable
+                         </div> 
+                  
+                  <!--****************************************************************************************************
+                      ********************** this is the button to get to get the ranking results*************************
+                      ****************************************************************************************************-->
+                  
+                 </div>  <br>  <button class= "next" onclick= "getValue(); 
+                                                               document.getElementById('results').style.display='block';
+                                                               document.getElementById('ranking').style.display='none'" > Submit </button> 
+            </div> 
+
+       <!-- ******* THIS IS THE CLOSING DIV FOR ALL THE  QUETIONS IN THE SURVEY ********* -->    
+      </div> 
+      
+       <!-- ******* THIS IS THE CLOSING DIV FOR THE THE SURVEY PAGE ********* -->  
+      </div>
+    
+     <!--****************************************************************************************************
+         ********************** this is the ranking results' Div ********************************************
+         ****************************************************************************************************-->
+   
+     <div id= "results"> Ranking Results: </div>
+ 
+    
+    
+    <!-- Load Leaflet and Carto libraries -->
+    <script src="https://libs.cartocdn.com/carto.js/v4.1.11/carto.min.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/11.1.0/nouislider.min.js"></script>
+    <!-- import the Mustache library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.0/mustache.min.js"></script>
+    <script src="./script.js"></script>
+    
+ </body>
+</html>
